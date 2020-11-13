@@ -1,0 +1,87 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Book>
+
+<h1>Book Page</h1>
+<div>
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Book List</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">
+                Create New Book
+            </a>
+        </div>
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        NameBook
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        year of release
+                    </th>
+                    <th>
+                        Stock
+                    </th>
+                    <th>
+                       
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                <tr>
+                    <td width="30%">
+                        @book.NameBook
+                    </td>
+                    <td width="30%">
+                        @book.Author
+                    </td>
+                    <td width="30%">
+                        @book.Description
+                    </td>
+                    <td width="10%">
+                        @book.Year
+                    </td>
+                    <td width="10%">
+                        @book.Stock
+                    </td>
+                    <td>
+                        <div>
+                            <a asp-controller="Book" asp-action="Edit" asp-route-Id="@book.Id" class="btn btn-primary">Edit</a>
+                            <a asp-controller="Book" asp-action="Delete" asp-route-Id="@book.Id" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+
+
+    }
+    else
+    {
+        <p>Không tồn tại thể loại trong database</p>
+    }
+
+
+</div>
